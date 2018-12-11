@@ -18,9 +18,9 @@ class Category(models.Model):
 
 class Article(models.Model):
     judul = models.CharField(max_length=250, unique=True,
-                             verbose_name='Judul Artikel')
+                             verbose_name='Judul')
     slug = models.SlugField(max_length=250, unique=True)
-    isi = models.TextField(blank=True)
+    isi = models.TextField(blank=True, verbose_name='Isi')
     gambar = models.ImageField(upload_to='artikel/', blank=True)
     kategori = models.ForeignKey(Category, on_delete=models.CASCADE)
     penulis = models.ForeignKey(Author, on_delete=models.CASCADE)
@@ -36,5 +36,8 @@ class Article(models.Model):
         verbose_name_plural = 'Articles'
         indexes = [
             models.Index(fields=['judul'], name='judul_index'),
-            models.Index(fields=['author'], name='penulis_index')
+            models.Index(fields=['penulis'], name='penulis_index')
         ]
+
+    def __str__(self):
+        return self.judul

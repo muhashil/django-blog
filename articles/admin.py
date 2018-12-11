@@ -5,7 +5,6 @@ from .models import Category, Article
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['judul', 'slug']
     prepopulated_fields = {'slug': ('judul',)}
-    date_hierarchy = 'pub_date'
 
 
 admin.site.register(Category, CategoryAdmin)
@@ -13,9 +12,12 @@ admin.site.register(Category, CategoryAdmin)
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['judul', 'penulis',
-                    'kategori', 'modified_date', 'pub_date']
-    readonly_fields = ('pub_date', 'modified_date')
+                    'kategori', 'featured', 'modified_date', 'pub_date']
+    list_editable = ['featured']
+    prepopulated_fields = {'slug': ('judul',)}
+    readonly_fields = ('likes', 'pub_date', 'modified_date')
     search_fields = ['judul']
+    date_hierarchy = 'pub_date'
 
 
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Article, ArticleAdmin)
