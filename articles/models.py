@@ -9,6 +9,7 @@ class Category(models.Model):
     deskripsi = models.TextField(blank=True, verbose_name='Deskripsi Kategori')
 
     class Meta:
+        ordering = ['judul']
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
