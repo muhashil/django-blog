@@ -1,12 +1,14 @@
 from django.db import models
 from accounts.models import Author
+from django.urls import reverse
 
 class ArticleManager(models.Manager):
     def featured(self):
         return super().filter(featured=True)
 
-    def with_category(self, category):
-        return super().filter(kategori=category)
+    def with_category(self, slug):
+        kategori = Category.objects.get(slug=slug)
+        return super().filter(kategori=kategori)
 
 class Category(models.Model):
     judul = models.CharField(max_length=250, unique=True,
@@ -21,7 +23,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.judul
-
+        
+    def get_absolute_url(self):
+        return reverse('articles:category', kwargs={'category_slug': self.slug})
 
 class Article(models.Model):
     judul = models.CharField(max_length=250, unique=True,
@@ -50,4 +54,7 @@ class Article(models.Model):
 
     def __str__(self):
         return self.judul
+
+    def get_absolute_url(self):
+        return reverse('articles:detail', kwargs={'category_slug': self.kategori.slug, 'slug': self.slug})
 
