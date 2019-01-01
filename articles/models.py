@@ -1,6 +1,12 @@
 from django.db import models
 from accounts.models import Author
 
+class ArticleManager(models.Manager):
+    def featured(self):
+        return super().filter(featured=True)
+
+    def with_category(self, category):
+        return super().filter(kategori=category)
 
 class Category(models.Model):
     judul = models.CharField(max_length=250, unique=True,
@@ -29,6 +35,8 @@ class Article(models.Model):
     featured = models.BooleanField(default=False)
     pub_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
+
+    objects = ArticleManager()
 
     class Meta:
         ordering = ['modified_date']

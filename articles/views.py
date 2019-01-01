@@ -1,3 +1,5 @@
 from django.shortcuts import render
+from .models import Article
 
-# Create your views here.
+def home(request):
+    return render(request, 'articles/home.html', {})
