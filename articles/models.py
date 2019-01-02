@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Author
 from django.urls import reverse
+from ckeditor.fields import RichTextField
 
 class ArticleManager(models.Manager):
     def featured(self):
@@ -14,7 +15,7 @@ class Category(models.Model):
     judul = models.CharField(max_length=250, unique=True,
                              verbose_name='Judul Kategori')
     slug = models.SlugField(max_length=250, unique=True)
-    deskripsi = models.TextField(blank=True, verbose_name='Deskripsi Kategori')
+    deskripsi = RichTextField(blank=True, verbose_name='Deskripsi Kategori')
 
     class Meta:
         ordering = ['judul']
@@ -31,7 +32,7 @@ class Article(models.Model):
     judul = models.CharField(max_length=250, unique=True,
                              verbose_name='Judul')
     slug = models.SlugField(max_length=250, unique=True)
-    isi = models.TextField(blank=True, verbose_name='Isi')
+    isi = RichTextField(blank=True, verbose_name='Isi')
     gambar = models.ImageField(upload_to='artikel/', blank=True)
     kategori = models.ForeignKey(Category, on_delete=models.CASCADE)
     penulis = models.ForeignKey(Author, on_delete=models.CASCADE)
