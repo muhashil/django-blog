@@ -10,6 +10,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('', home, name='home'),
     path('articles/', include('articles.urls')),
+    path('search/', include('search.urls')),
     path('', include('sitepages.urls'))
 ]
 

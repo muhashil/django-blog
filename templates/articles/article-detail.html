@@ -42,7 +42,7 @@ Article Detail
                 <div class="entry__cat">
                     <h5>Posted In: </h5>
                     <span class="entry__tax-list">
-                        <a href="#0">{{ article.kategori.judul }}</a>
+                        <a href="{{ article.kategori.get_absolute_url }}">{{ article.kategori.judul }}</a>
                     </span>
                 </div> <!-- end entry__cat -->
             </div> <!-- end s-content__taxonomies -->
@@ -68,23 +68,6 @@ Article Detail
 
     </article> <!-- end entry/article -->
 
-
-    <div class="s-content__entry-nav">
-        <div class="row s-content__nav">
-            <div class="col-six s-content__prev">
-                <a href="#0" rel="prev">
-                    <span>Previous Post</span>
-                    The Pomodoro Technique Really Works.
-                </a>
-            </div>
-            <div class="col-six s-content__next">
-                <a href="#0" rel="next">
-                    <span>Next Post</span>
-                    3 Benefits of Minimalism In Interior Design.
-                </a>
-            </div>
-        </div>
-    </div> <!-- end s-content__pagenav -->
 
 </section> <!-- end s-content -->
 {% endblock content %}

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
-    
+
     'corsheaders',
     'rest_framework',
     'ckeditor',
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'accounts',
     'articles',
     'sitepages',
+    'search',
 ]
 
 MIDDLEWARE = [
