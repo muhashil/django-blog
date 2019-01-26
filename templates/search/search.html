@@ -55,19 +55,19 @@ My Personal Blog
             <nav class="pgn" data-aos="fade-up">
                 <ul>
                     {% if articles.has_previous %}
-                    <li><a class="pgn__prev" href="?page={{ articles.previous_page_number }}">Prev</a></li>
+                    <li><a class="pgn__prev" href="?page={{ articles.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Prev</a></li>
                     {% endif %}
 
                     {% for pg in articles.paginator.page_range %}
                     <li>
-                        <a class="pgn__num {% if articles.number == pg %}current{% endif %}" href="?page={{ pg }}">
+                        <a class="pgn__num {% if articles.number == pg %}current{% endif %}" href="?page={{ pg }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">
                             {{ pg }}
                         </a>
                     </li>
                     {% endfor %}
 
                     {% if articles.has_next %}
-                    <li><a class="pgn__next" href="?page={{ articles.next_page_number }}">Next</a></li>
+                    <li><a class="pgn__next" href="?page={{ articles.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a></li>
                     {% endif %}
                 </ul>
             </nav>
